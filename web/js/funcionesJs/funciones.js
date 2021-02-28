@@ -1,6 +1,76 @@
+    
+    // esta funcion sera usada para continuar con eventos (Crear eliminar etc)
+    function alerta(accion,message){
+    
+    const swalWithBootstrapButtons = Swal.mixin({
+                                      customClass: {
+                                        confirmButton: 'btn btn-success',
+                                        cancelButton: 'btn btn-danger'
+                                      },
+                                      buttonsStyling: false
+                                    })
+
+                                    swalWithBootstrapButtons.fire({
+                                        title: '¿Seguro desea '+accion+'?',
+		                                text: "Notificación!",
+		                                type: 'warning',
+		                                width: '35%',
+		                                showCancelButton: true,
+		                                confirmButtonText: 'Si,'+accion+'!',
+		                                cancelButtonText: 'No,'+accion+'!',
+		                                reverseButtons: true
+                                    }).then((result) => {
+                                      if (result.isConfirmed) {
+                                        swalWithBootstrapButtons.fire(
+                                          'Notificación!',
+		                                  'Proceso '+accion+' iniciado.',
+		                                  'success'
+                                        )
+                                      } else if (
+                                        /* Read more about handling dismissals below */
+                                        result.dismiss === Swal.DismissReason.cancel
+                                      ) {
+                                        swalWithBootstrapButtons.fire(
+                                          'Notificación',
+		                                  'Proceso '+accion+' cancelado:)',
+		                                  'error'
+                                        )
+                                      }
+                                    })
+    }
+    // esta funcion sera usada para messages de error 
+    function alertProcess(accion,descripcion,type){
+	    Swal.fire(
+  		    accion,
+  		    descripcion,
+  		    type
+	    )
+    }
+
 /* 
     Este codigo se encarga del cambio de estado del usuario por medio del click en el boton
-*/
+*/  
+    function postFuncion(){
+        var form = $("#postcrearHistoria").serialize();
+            postCrearHistoriaClinica(form);
+
+
+    }
+
+    function postCrearHistoriaClinica(form){
+        
+       $.ajax({
+            type:"get",
+            url: "index.php?modulo=HistoriaClinica&controlador=HistoriaClinica&funcion=crearHistoriaClinica",
+            data: form,
+            success:function(result){
+                alertProcess('Notificación',"Se registro correctamente",'success');
+                ruta='index.php?modulo=HistoriaClinica&controlador=HistoriaClinica&funcion=listarHistorial';
+                setTimeout(redireccionar(document.location=ruta),5000);
+            }
+        });
+    }
+    
     function eliminarHistoria(id){
     var id_dato = id;
     Swal.fire({
@@ -68,3 +138,4 @@
             }
         });
     }
+    

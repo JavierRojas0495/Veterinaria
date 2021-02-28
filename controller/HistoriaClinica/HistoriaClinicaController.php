@@ -10,10 +10,10 @@ class HistoriaClinicaController{
         include_once '../view/Historia/HistoriaClinica/crear.php';
     }
     
-    public function postHistoriaClinica(){
+    public function crearHistoriaClinica(){
         $Gst = new GstHistoriaClinica();
-        $insertar = $Gst->InsertarHistoriaClinica($_POST);
-        $this->listarHistorial();
+        $insertar = $Gst->InsertarHistoriaClinica($_GET);
+        return $insertar;
     }
 
     Public function listarHistorial(){

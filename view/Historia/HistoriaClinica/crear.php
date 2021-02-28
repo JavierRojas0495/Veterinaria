@@ -1,5 +1,5 @@
 
-<form name="crearHistoria" method="post" action="<?php echo getUrl("HistoriaClinica","HistoriaClinica","postHistoriaClinica"); ?>" enctype="multipart/form-data">
+<form id="postcrearHistoria" name="postcrearHistoria" method="get" enctype="multipart/form-data">
    
         <div class="col-lg-12">
                 <h1 class="page-header">Crear Historia Clinica</h1>
@@ -33,7 +33,7 @@
     
             <div class="form-group">
                 <div class="form-group-center">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <button onclick="postFuncion()" class="btn btn-success">Enviar</button>
                 </div>
             </div>
 

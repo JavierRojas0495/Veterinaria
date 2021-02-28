@@ -10,6 +10,7 @@
 			return $datos;
 		}
 		public function InsertarHistoriaClinica($datos){
+		
 			$ObjFuncion = new HistoriaClinicaModel();
 			$id_mascota = $datos['id'];
 			$fecha = $datos['fecha'];
