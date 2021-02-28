@@ -64,9 +64,11 @@
             url: "index.php?modulo=HistoriaClinica&controlador=HistoriaClinica&funcion=crearHistoriaClinica",
             data: form,
             success:function(result){
+            //alert("entra");
                 alertProcess('Notificación',"Se registro correctamente",'success');
-                ruta='index.php?modulo=HistoriaClinica&controlador=HistoriaClinica&funcion=listarHistorial';
-                setTimeout(redireccionar(document.location=ruta),5000);
+                //alert("funciona aqui");
+                setTimeout(location.href='index.php?modulo=HistoriaClinica&controlador=HistoriaClinica&funcion=listarHistorial', 5000);
+                
             }
         });
     }
